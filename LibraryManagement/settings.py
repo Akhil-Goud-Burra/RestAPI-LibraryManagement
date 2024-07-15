@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-7v4r24+zt402dd#6cxp!=2xgj_^p8#(4ea!f9@)4pxlsengr^b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.219.44.21', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'djoser',
     #step11:
     'drf_spectacular',
+
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -70,7 +72,40 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    'http://akhilfrontedbucket.s3-website.us-east-2.amazonaws.com',
+    'http://localhost:3000',
+    'http://18.219.44.21:8000',  # Add your frontend URL here
+]
+
+
+
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'OPTIONS',
+    'PUT',
+    'DELETE',
+]
+
+
+
+
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'X-CSRFToken',
+    'Authorization',
+]
+
+
 
 ROOT_URLCONF = 'LibraryManagement.urls'
 
